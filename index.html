@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rádio Rede Aleluia 100.5 FM</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-indigo-100 to-white min-h-screen flex flex-col">
+
+<!-- Header
+<header class="bg-white shadow p-6 flex justify-center">
+    <img src="https://via.placeholder.com/220x80?text=Rede+Aleluia+100.5+FM" alt="Logo da Rádio" class="h-20">
+</header>-->
+
+<!-- Main -->
+<main class="flex flex-col items-center justify-center flex-1 px-4 text-center">
+    <h1 class="text-4xl font-bold text-indigo-800 mb-2">Rádio Rede Aleluia 100.5 FM</h1>
+    <p class="text-gray-600 mb-6 text-lg">A voz da fé e da esperança</p>
+
+    <!-- Faixa atual -->
+    <div class="mb-4">
+        <p id="current-track" class="text-xl font-medium text-indigo-700">🎵 Tocando agora: Transmissão ao vivo</p>
+    </div>
+
+    <!-- Player -->
+    <audio id="radio-player"
+           src="https://glaudiotecnology.srv.br/listen/r%C3%A1dio_rede_aleluia_100.5_fm_/100.5"
+           preload="none"
+    ></audio>
+
+    <!-- Botão Play/Pause e volume -->
+    <div class="flex flex-col items-center gap-4">
+        <button id="playPauseBtn"
+                onclick="togglePlayPause()"
+                class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-3 rounded-full shadow-lg transition-all duration-300 text-lg focus:outline-none"
+        >
+            <i id="playPauseIcon" class="fas fa-play"></i>
+            Ouvir Agora
+        </button>
+
+        <!-- Volume -->
+        <div class="flex items-center gap-3 text-gray-700">
+            <i class="fas fa-volume-up text-xl"></i>
+            <input
+                    type="range"
+                    min="0" max="1" step="0.01" value="1"
+                    onchange="changeVolume(this.value)"
+                    class="w-36 accent-indigo-600">
+        </div>
+    </div>
+</main>
+
+<!-- Footer
+<footer class="bg-white border-t mt-10 p-4 text-center shadow-inner">
+    <p class="text-gray-700 flex items-center justify-center gap-2 text-lg">
+        <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+        <a href="https://wa.me/5599999999999" target="_blank" class="hover:underline">
+            (99) 99999-9999
+        </a>
+    </p>
+</footer>-->
+
+<script>
+    const player = document.getElementById("radio-player");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const playPauseIcon = document.getElementById("playPauseIcon");
+
+    let isPlaying = false;
+
+    function togglePlayPause() {
+        if (!isPlaying) {
+            player.play();
+            playPauseIcon.classList.replace("fa-play", "fa-pause");
+            playPauseBtn.classList.replace("bg-indigo-600", "bg-red-500");
+            playPauseBtn.classList.replace("hover:bg-indigo-700", "hover:bg-red-600");
+            playPauseBtn.innerHTML = `<i id="playPauseIcon" class="fas fa-pause"></i> Pausar`;
+        } else {
+            player.pause();
+            playPauseIcon.classList.replace("fa-pause", "fa-play");
+            playPauseBtn.classList.replace("bg-red-500", "bg-indigo-600");
+            playPauseBtn.classList.replace("hover:bg-red-600", "hover:bg-indigo-700");
+            playPauseBtn.innerHTML = `<i id="playPauseIcon" class="fas fa-play"></i> Ouvir Agora`;
+        }
+        isPlaying = !isPlaying;
+    }
+
+    function changeVolume(value) {
+        player.volume = value;
+    }
+</script>
+</body>
+</html>
